@@ -17,6 +17,9 @@ Route::group(['prefix' => 'wishplan'], function () {
     });
 
     Route::group(['prefix' => 'api'], function () {
-        Route::get('/record/{id}', 'ApiController@record')->name('api-record');
+        Route::get('/voice-record/{id?}', 'ApiController@voiceRecord')->name('api-vrecord');
+        Route::get('/note-record/{id?}', 'ApiController@vnoteRecord')->name('api-nrecord');
+        Route::get('/add-tags', 'ApiController@addTags')->name('api-addtags');
+        Route::get('/get-tags/{id?}', 'ApiController@getAllWishTags')->name('api-getwishtags');
     });
 });
