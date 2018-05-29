@@ -45,7 +45,8 @@ class ApiController extends Controller
     public function getAllWishTags($user_id = null) 
     {
         $tags = $this->wishTagRepo->findAllTags($user_id);
-
+        
+        // dd($tags);
         return response()->json($tags);
     }
 }

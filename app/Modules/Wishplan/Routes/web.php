@@ -16,10 +16,10 @@ Route::group(['prefix' => 'wishplan'], function () {
         dd('This is the Wishplan module index page. Build something great!');
     });
 
-    Route::group(['prefix' => 'api'], function () {
-        Route::get('/voice-record/{id?}', 'ApiController@voiceRecord')->name('api-vrecord');
-        Route::get('/note-record/{id?}', 'ApiController@vnoteRecord')->name('api-nrecord');
-        Route::get('/add-tags', 'ApiController@addTags')->name('api-addtags');
-        Route::get('/get-tags/{id?}', 'ApiController@getAllWishTags')->name('api-getwishtags');
-    });
+    // Route::group(['prefix' => 'api'], function () {
+    //     Route::get('/voice-record/{id?}', 'ApiController@voiceRecord')->name('api-vrecord');
+    //     Route::get('/note-record/{id?}', 'ApiController@vnoteRecord')->name('api-nrecord');
+    //     Route::get('/add-tags', 'ApiController@addTags')->name('api-addtags');
+    //     Route::get('/get-tags/{id?}', 'ApiController@getAllWishTags')->name('api-getwishtags');
+    // });
 });

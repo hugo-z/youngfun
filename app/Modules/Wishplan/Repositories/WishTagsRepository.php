@@ -26,6 +26,13 @@ class WishTagsRepository extends Repository
             ? $this->findWhere(['user_id' => $id], $columns) 
             : $this->all($columns);
 
-        return $tags;
+        $formmattedTags = [];
+        foreach ($tags as $k => $v) {
+            $formmattedTags[$v['id']]['value'] = $v['id'];
+            $formmattedTags[$v['id']]['name'] = $v['name'];
+            $formmattedTags[$v['id']]['checked'] = $v['is_checked'];
+        }
+
+        return $formmattedTags;
     }
 }
