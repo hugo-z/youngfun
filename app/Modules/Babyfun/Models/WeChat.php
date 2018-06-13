@@ -15,22 +15,29 @@ class WeChat extends Model
      * @param integer $expireIn     the session_key expiration time - days
      * @return 
      */
-    public function saveLoginSessions ($sessionSet, $expireIn = 30)
+    public function saveLoginSessions ($sessionSet, $oldSessionSid, $expireIn = 30)
     {
-        // return $sessionSet['openid'];
-        $session_id = self::generate3rdSessionId($sessionSet['openid']);
+        // first check the old session id
+        if ($oldSessionSid) {
+            // if there is and old session sid, remove it from session
+            Redis::del ($oldSessionSid);
+        }
+
+        // The generate a new server session sid
+        $session_id = Crypt::encryptString ($sessionSet['openid']);
+
+        // and relate it to the session set
         Redis::hmset ($session_id, $sessionSet);
 
+        // return the newly generated server session sid
         return $session_id;
     }
 
-    public function getSessionKey ($session_id)
+    public static function getOpenId ($server_id)
     {
-        return Redis::hgetall ($session_id);
+        $session_set = Redis::hgetall ($server_id);
+
+        return $session_set['openid'];
     }
 
-    private static function generate3rdSessionId ($openId)
-    {
-        return Crypt::encryptString ($openId);
-    }
 }

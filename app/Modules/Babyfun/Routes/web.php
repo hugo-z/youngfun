@@ -12,7 +12,5 @@
 */
 
 Route::group(['prefix' => 'babyfun'], function () {
-    Route::get('/', function () {
-        dd('This is the Babyfun module index page. Build something great!');
-    });
+    Route::get('/', 'WeChatController@index');
 });
