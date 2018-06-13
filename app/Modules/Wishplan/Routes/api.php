@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::get('/wishplan', function (Request $request) {
     // return $request->wishplan();
 })->middleware('auth:api');
+
+Route::group(['prefix' => 'wishplan'], function () {
+    Route::get('/voice-record/{id?}', 'ApiController@voiceRecord')->name('api-vrecord');
+    Route::get('/note-record/{id?}', 'ApiController@vnoteRecord')->name('api-nrecord');
+    Route::get('/add-tags', 'ApiController@addTags')->name('api-addtags');
+    Route::get('/get-tags/{id?}', 'ApiController@getAllWishTags')->name('api-getwishtags');
+});
